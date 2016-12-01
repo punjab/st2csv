@@ -5,7 +5,7 @@ describe St2csv do
     expect(St2csv::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "Loads a Converter class" do
+    expect(St2csv::Converter).to be_a(Class)
   end
 end
