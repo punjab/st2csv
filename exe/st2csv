@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'st2csv'
+require 'optparse'
+
+options = {}
+
+option_parser = OptionParser.new do |opts|
+  executable_name = File.basename($PROGRAM_NAME)
+  opts.banner = "
+    Usage: #{executable_name} input_file.json output_file.csv
+  "
+
+  opts.on('-h', '--help', 'Print this help') do
+    options[:help] = true
+  end
+
+end
+  
+begin
+  option_parser.parse!
+  rescue OptionParser::InvalidOption => error
+  puts "st2csv doesn't recognize that #{ error }"
+  exit
+  rescue OptionParser::AmbiguousOption => error
+  puts "That's an #{ error}"
+  exit
+end
+
+if ARGV.empty? || !ARGV[1]
+  puts "    error: you must specify both input and output file names"
+  puts option_parser.help
+else
+  begin
+  	json_text = File.read(ARGV[0])
+  rescue Exception => e
+  	puts e
+  end
+  converter = St2csv::Converter.new(json_text)
+	File.open(ARGV[1], 'ab') do |f|
+		f << converter.convert
+	end
+end
