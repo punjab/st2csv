@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Surrey Traffic Loop Data into csv.}
   spec.description   = %q{Converts the json data from surrey traffic loops API into CSV.}
-  spec.homepage      = "https://communitylogiq.com"
+  spec.homepage      = "https://github.com/comunitylogiq/st2csv"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
