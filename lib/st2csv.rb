@@ -11,7 +11,7 @@ module St2csv
 
     def convert
     	csv_string = CSV.generate(options = {force_quotes: true}) do |csv|
-        csv << ["datetime","traffic_loop_id","traffic_count"]
+        # csv << ["datetime","traffic_loop_id","traffic_count"]
       	JSON.parse(@json_string).each do |hash|
           csv << [hash["DATETIME"].scan(/(\d{4}-\d{1,2}-\d{1,2}).([\d:]*)/).join(' '),
                   hash["LOOP_ID"].sub('-','00'),
