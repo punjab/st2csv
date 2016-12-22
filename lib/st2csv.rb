@@ -14,7 +14,7 @@ module St2csv
         # csv << ["datetime","traffic_loop_id","traffic_count"]
       	JSON.parse(@json_string).each do |hash|
           csv << [hash["DATETIME"].scan(/(\d{4}-\d{1,2}-\d{1,2}).([\d:]*)/).join(' '),
-                  hash["LOOP_ID"].sub('-','00'),
+                  hash["LOOP_ID"],
                   hash["TRAFFIC_COUNT"]
                 ]
       	end
